@@ -1,0 +1,2 @@
+# ezWalletPE
+ezWallet Pocket Edition
