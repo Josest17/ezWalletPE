@@ -16,18 +16,6 @@
             android:name=".NewAccount"
             android:exported="false" />
         <activity
-            android:name=".Profile"
-            android:exported="false" />
-        <activity
-            android:name=".History"
-            android:exported="false" />
-        <activity
-            android:name=".Transfers"
-            android:exported="false" />
-        <activity
-            android:name=".Wallet"
-            android:exported="false" />
-        <activity
             android:name=".Launcher"
             android:exported="true">
             <intent-filter>

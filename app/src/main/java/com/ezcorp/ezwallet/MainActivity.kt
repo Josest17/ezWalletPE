@@ -1,9 +1,8 @@
 package com.ezcorp.ezwallet
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -11,39 +10,31 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val btnMyWallet = findViewById<Button>(R.id.my_wallet_btn)
-        btnMyWallet.setOnClickListener {
-            val intent = Intent(this, Wallet::class.java)
-            startActivity(intent)
-        }
+        val fragmentMMenu = MainMenu()
+        val fragmentWallet = WalletFragment()
+        val fragmentTransfers = TransfersFragment()
+        val fragmentHistory = HistoryFragment()
+        val fragmentProfile = ProfileFragment()
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
-        bottomNavigationView.selectedItemId = R.id.home
+
+        replaceFragment(fragmentMMenu)
 
         bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {
-
-                R.id.credit_card -> {
-                    val intent = Intent(this, Wallet::class.java)
-                    startActivity(intent)
-                }
-
-                R.id.transfers -> {
-                    val intent = Intent(this, Transfers::class.java)
-                    startActivity(intent)
-                }
-
-                R.id.history -> {
-                    val intent = Intent(this, History::class.java)
-                    startActivity(intent)
-                }
-
-                R.id.profile -> {
-                    val intent = Intent(this, Profile::class.java)
-                    startActivity(intent)
-                }
+                R.id.home -> { replaceFragment(fragmentMMenu) }
+                R.id.credit_card -> { replaceFragment(fragmentWallet) }
+                R.id.transfers -> { replaceFragment(fragmentTransfers) }
+                R.id.history -> { replaceFragment(fragmentHistory) }
+                R.id.profile -> { replaceFragment(fragmentProfile) }
             }
-            false
+            true
         }
+    }
+
+    private fun replaceFragment(fragment: Fragment) {
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.fragment_container, fragment)
+        transaction.commit()
     }
 }
