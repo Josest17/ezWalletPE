@@ -1,12 +1,18 @@
 package com.ezcorp.ezwallet
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
+import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.squareup.picasso.Picasso
+import de.hdodenhof.circleimageview.CircleImageView
+import java.text.DecimalFormat
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -23,6 +29,9 @@ class MainMenu : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    val firebaseAuth = FirebaseAuth.getInstance()
+    val db = FirebaseFirestore.getInstance()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -37,12 +46,34 @@ class MainMenu : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_main_menu, container, false)
+        val avatar = view.findViewById<CircleImageView>(R.id.avatar)
+        val balance = view.findViewById<TextView>(R.id.balance)
         val btnWallet = view.findViewById<Button>(R.id.my_wallet_btn)
+
+        Picasso.get().load("https://i.pravatar.cc/300").into(avatar)
+
+        db.collection("users").document(firebaseAuth.currentUser!!.uid).get().addOnSuccessListener {
+            val balanceValue = it.data?.get("balance")
+            val formattedBalance = DecimalFormat("#,##0.00").format(balanceValue)
+            balance.text = "$ $formattedBalance"
+        }
+
+        avatar?.setOnClickListener {
+            val fragmentProfile = ProfileFragment()
+            val transaction = activity?.supportFragmentManager?.beginTransaction()
+            val bottomNavigationView =
+                activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)
+
+            bottomNavigationView?.selectedItemId = R.id.profile
+            transaction?.replace(R.id.fragment_container, fragmentProfile)
+            transaction?.commit()
+        }
 
         btnWallet?.setOnClickListener {
             val fragmentWallet = WalletFragment()
             val transaction = activity?.supportFragmentManager?.beginTransaction()
-            val bottomNavigationView = activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)
+            val bottomNavigationView =
+                activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)
 
             bottomNavigationView?.selectedItemId = R.id.credit_card
             transaction?.replace(R.id.fragment_container, fragmentWallet)

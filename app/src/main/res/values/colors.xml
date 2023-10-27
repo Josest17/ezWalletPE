@@ -7,4 +7,6 @@
     <color name="secondary">#e43a19</color>
     <color name="inactive">#fbfbfb</color>
     <color name="transparent">#00000000</color>
+    <color name="amex">#0183f6</color>
+    <color name="visa">#4f4f4f</color>
 </resources>

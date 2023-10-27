@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MainMenu">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -23,23 +24,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginVertical="15dp"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
 
                 <ImageView
                     android:id="@+id/logo"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:src="@drawable/logoh"
-                    />
+                    android:src="@drawable/logoh" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/avatar"
                     android:layout_width="45dp"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:src = "@drawable/avatar_1"/>
+                    android:layout_alignParentEnd="true" />
 
             </RelativeLayout>
 
@@ -59,11 +57,11 @@
                     android:text="Saldo total" />
 
                 <TextView
+                    android:id="@+id/balance"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginHorizontal="10dp"
-                    android:text="$13,000.00"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                     android:textColor="#000000"
                     android:textStyle="bold" />
@@ -79,8 +77,8 @@
                 android:textAlignment="viewStart"
                 app:cornerRadius="10dp"
                 app:icon="@drawable/outline_wallet_24"
-                app:iconSize="25dp"
-                app:iconGravity="end" />
+                app:iconGravity="end"
+                app:iconSize="25dp" />
 
         </LinearLayout>
 
@@ -117,31 +115,31 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="5"
-                        android:src = "@drawable/avatar_2" />
+                        android:src="@drawable/avatar_2" />
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="5"
-                        android:src = "@drawable/avatar_3" />
+                        android:src="@drawable/avatar_3" />
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="5"
-                        android:src = "@drawable/avatar_4" />
+                        android:src="@drawable/avatar_4" />
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="5"
-                        android:src = "@drawable/avatar_5" />
+                        android:src="@drawable/avatar_5" />
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="5"
-                        android:src = "@drawable/avatar_6" />
+                        android:src="@drawable/avatar_6" />
 
                 </LinearLayout>
 
@@ -168,6 +166,7 @@
                     android:contentDescription="Ultimos Movimientos">
 
                     <LinearLayout
+                        android:id="@+id/last_movements"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
@@ -181,15 +180,14 @@
                             <androidx.cardview.widget.CardView
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
-                                app:cardCornerRadius="5dp"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginHorizontal="10dp"
-                                >
+                                app:cardCornerRadius="5dp">
 
                                 <ImageView
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:src = "@drawable/avatar_2"/>
+                                    android:src="@drawable/avatar_2" />
 
                             </androidx.cardview.widget.CardView>
 
@@ -204,15 +202,14 @@
                             <androidx.cardview.widget.CardView
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
-                                app:cardCornerRadius="5dp"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginHorizontal="10dp"
-                                >
+                                app:cardCornerRadius="5dp">
 
                                 <ImageView
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:src = "@drawable/avatar_3"/>
+                                    android:src="@drawable/avatar_3" />
 
                             </androidx.cardview.widget.CardView>
 
@@ -227,15 +224,14 @@
                             <androidx.cardview.widget.CardView
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
-                                app:cardCornerRadius="5dp"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginHorizontal="10dp"
-                                >
+                                app:cardCornerRadius="5dp">
 
                                 <ImageView
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:src = "@drawable/avatar_5"/>
+                                    android:src="@drawable/avatar_5" />
 
                             </androidx.cardview.widget.CardView>
 
@@ -250,15 +246,14 @@
                             <androidx.cardview.widget.CardView
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
-                                app:cardCornerRadius="5dp"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginHorizontal="10dp"
-                                >
+                                app:cardCornerRadius="5dp">
 
                                 <ImageView
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:src = "@drawable/avatar_7"/>
+                                    android:src="@drawable/avatar_7" />
 
                             </androidx.cardview.widget.CardView>
 

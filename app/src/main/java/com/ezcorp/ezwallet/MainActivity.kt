@@ -22,11 +22,25 @@ class MainActivity : AppCompatActivity() {
 
         bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {
-                R.id.home -> { replaceFragment(fragmentMMenu) }
-                R.id.credit_card -> { replaceFragment(fragmentWallet) }
-                R.id.transfers -> { replaceFragment(fragmentTransfers) }
-                R.id.history -> { replaceFragment(fragmentHistory) }
-                R.id.profile -> { replaceFragment(fragmentProfile) }
+                R.id.home -> {
+                    replaceFragment(fragmentMMenu)
+                }
+
+                R.id.credit_card -> {
+                    replaceFragment(fragmentWallet)
+                }
+
+                R.id.transfers -> {
+                    replaceFragment(fragmentTransfers)
+                }
+
+                R.id.history -> {
+                    replaceFragment(fragmentHistory)
+                }
+
+                R.id.profile -> {
+                    replaceFragment(fragmentProfile)
+                }
             }
             true
         }

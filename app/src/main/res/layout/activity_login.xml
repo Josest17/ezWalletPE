@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Login"
-    android:statusBarColor = "@color/white">
+    android:statusBarColor="@color/white"
+    tools:context=".Login">
 
     <Button
         android:id="@+id/login_button"
@@ -36,6 +36,8 @@
         android:textColor="#000000"
         android:textStyle="bold"
         app:cornerRadius="5dp"
+        app:icon="@drawable/google"
+        app:iconTint="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -56,6 +58,7 @@
         android:textColor="#FFFFFF"
         android:textStyle="bold"
         app:cornerRadius="5dp"
+        app:icon="@drawable/whatsapp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
