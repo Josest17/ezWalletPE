@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "942177765374",
+    "project_id": "ezwallet-app",
+    "storage_bucket": "ezwallet-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:942177765374:android:ddfbba0a5ee207dd0022af",
+        "android_client_info": {
+          "package_name": "com.ezcorp.ezwallet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "942177765374-fmi2v0kjjdbcsulbv8hfm9vudqf1ppv7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7A1AXHhDMN6cEoMopTnJEIVCbscICvtU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "942177765374-fmi2v0kjjdbcsulbv8hfm9vudqf1ppv7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

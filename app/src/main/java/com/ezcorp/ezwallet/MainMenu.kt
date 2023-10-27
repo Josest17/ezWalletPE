@@ -50,7 +50,7 @@ class MainMenu : Fragment() {
         val balance = view.findViewById<TextView>(R.id.balance)
         val btnWallet = view.findViewById<Button>(R.id.my_wallet_btn)
 
-        Picasso.get().load("https://i.pravatar.cc/300").into(avatar)
+        Picasso.get().load("https://api.dicebear.com/7.x/bottts-neutral/png?seed=${firebaseAuth.currentUser!!.uid}").into(avatar)
 
         db.collection("users").document(firebaseAuth.currentUser!!.uid).get().addOnSuccessListener {
             val balanceValue = it.data?.get("balance")
