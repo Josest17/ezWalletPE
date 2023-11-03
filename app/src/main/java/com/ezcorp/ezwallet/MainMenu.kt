@@ -29,8 +29,8 @@ class MainMenu : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-    val firebaseAuth = FirebaseAuth.getInstance()
-    val db = FirebaseFirestore.getInstance()
+    private val firebaseAuth = FirebaseAuth.getInstance()
+    private val db = FirebaseFirestore.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,13 +70,12 @@ class MainMenu : Fragment() {
         }
 
         btnWallet?.setOnClickListener {
-            val fragmentWallet = WalletFragment()
             val transaction = activity?.supportFragmentManager?.beginTransaction()
+            transaction?.replace(R.id.fragment_container, WalletFragment())
+            transaction?.addToBackStack(null);
             val bottomNavigationView =
                 activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)
-
             bottomNavigationView?.selectedItemId = R.id.credit_card
-            transaction?.replace(R.id.fragment_container, fragmentWallet)
             transaction?.commit()
         }
 

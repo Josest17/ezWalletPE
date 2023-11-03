@@ -11,8 +11,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 class Login : AppCompatActivity() {
-    val firebaseAuth = FirebaseAuth.getInstance()
-    val db = FirebaseFirestore.getInstance()
+    private val firebaseAuth = FirebaseAuth.getInstance()
+    private val db = FirebaseFirestore.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -25,7 +25,6 @@ class Login : AppCompatActivity() {
         val register = findViewById<Button>(R.id.register1)
 
         loginButton.setOnClickListener {
-
             if (emailText.text.isNotEmpty() || passwordText.text.isNotEmpty()) {
                 firebaseAuth.signInWithEmailAndPassword(
                     emailText.text.toString(),
