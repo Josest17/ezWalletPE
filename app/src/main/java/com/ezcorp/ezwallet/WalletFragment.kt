@@ -12,6 +12,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -150,11 +151,11 @@ class WalletFragment : Fragment() {
                     }
                 }
                 editName.isEnabled = false
-                editBtn.setBackgroundColor(resources.getColor(R.color.primary))
+                editBtn.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.primary))
                 editBtn.text = "Modificar"
             } else {
                 editName.isEnabled = true
-                editBtn.setBackgroundColor(resources.getColor(R.color.black))
+                editBtn.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black))
                 editBtn.text = "Guardar"
             }
             isEditing = !isEditing

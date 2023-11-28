@@ -11,6 +11,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -65,19 +66,49 @@ class HistoryFragment : Fragment() {
         movementsBtn.setOnClickListener {
             transfersLayout.removeAllViews()
             viewModel.setShowTransfers(true)
-            movementsBtn.setBackgroundColor(resources.getColor(R.color.secondary))
-            movementsBtn.setTextColor(resources.getColor(R.color.white))
-            transfersBtn.setBackgroundColor(resources.getColor(R.color.inactive))
-            transfersBtn.setTextColor(resources.getColor(R.color.inactive_font))
+            movementsBtn.setBackgroundColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.secondary
+                )
+            )
+            movementsBtn.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+            transfersBtn.setBackgroundColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.inactive
+                )
+            )
+            transfersBtn.setTextColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.inactive_font
+                )
+            )
         }
 
         transfersBtn.setOnClickListener {
             transfersLayout.removeAllViews()
             viewModel.setShowTransfers(false)
-            movementsBtn.setBackgroundColor(resources.getColor(R.color.inactive))
-            movementsBtn.setTextColor(resources.getColor(R.color.inactive_font))
-            transfersBtn.setBackgroundColor(resources.getColor(R.color.secondary))
-            transfersBtn.setTextColor(resources.getColor(R.color.white))
+            movementsBtn.setBackgroundColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.inactive
+                )
+            )
+            movementsBtn.setTextColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.inactive_font
+                )
+            )
+            transfersBtn.setBackgroundColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.secondary
+                )
+            )
+            transfersBtn.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
         }
 
         viewModel.showTransfers.observe(viewLifecycleOwner) { showTransfers ->
@@ -85,7 +116,9 @@ class HistoryFragment : Fragment() {
                 val transfersDB = db.collection("movements")
                 transfersDB.whereEqualTo("owner", firebaseAuth.currentUser!!.uid).get()
                     .addOnSuccessListener { documents ->
-                        for (document in documents) {
+                        val sortedDocuments =
+                            documents.sortedByDescending { it.data["date"] as Timestamp }
+                        for (document in sortedDocuments) {
                             transfersLayout.addView(
                                 LayoutInflater.from(context).inflate(
                                     R.layout.movementscard, transfersLayout, false
@@ -103,6 +136,9 @@ class HistoryFragment : Fragment() {
                             val dateText =
                                 transfersLayout.getChildAt(transfersLayout.childCount - 1)
                                     .findViewById<TextView>(R.id.dateText)
+                            val avatarImg =
+                                transfersLayout.getChildAt(transfersLayout.childCount - 1)
+                                    .findViewById<ImageView>(R.id.avatar)
 
                             nameText.text = document.data["name"].toString()
                             descriptionText.text = document.data["description"].toString()
@@ -115,6 +151,7 @@ class HistoryFragment : Fragment() {
                             val date = Date(seconds * 1000L)
                             val formattedDate = SimpleDateFormat("dd.MM.yyyy HH:mm").format(date)
                             dateText.text = formattedDate
+                            avatarImg.setImageResource(R.drawable.apple)
                         }
                     }.addOnFailureListener {
                         Toast.makeText(context, "No existen compras", Toast.LENGTH_SHORT).show()
@@ -131,7 +168,9 @@ class HistoryFragment : Fragment() {
                     )
                 ).get()
                     .addOnSuccessListener { documents ->
-                        for (document in documents) {
+                        val sortedDocuments =
+                            documents.sortedByDescending { it.data["date"] as Timestamp }
+                        for (document in sortedDocuments) {
                             transfersLayout.addView(
                                 LayoutInflater.from(context).inflate(
                                     R.layout.movementscard, transfersLayout, false
@@ -176,9 +215,13 @@ class HistoryFragment : Fragment() {
                             val formattedDate = SimpleDateFormat("dd.MM.yyyy HH:mm").format(date)
                             dateText.text = formattedDate
                             if (senderID == firebaseAuth.currentUser!!.uid) {
-                                Picasso.get().load("https://api.dicebear.com/7.x/bottts-neutral/png?seed=${receiverID}").into(avatarImg)
+                                Picasso.get()
+                                    .load("https://api.dicebear.com/7.x/bottts-neutral/png?seed=${receiverID}")
+                                    .into(avatarImg)
                             } else {
-                                Picasso.get().load("https://api.dicebear.com/7.x/bottts-neutral/png?seed=${senderID}").into(avatarImg)
+                                Picasso.get()
+                                    .load("https://api.dicebear.com/7.x/bottts-neutral/png?seed=${senderID}")
+                                    .into(avatarImg)
                             }
 
                         }

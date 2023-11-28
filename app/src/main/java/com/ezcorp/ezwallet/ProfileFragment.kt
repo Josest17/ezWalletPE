@@ -1,5 +1,6 @@
 package com.ezcorp.ezwallet
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -52,6 +54,7 @@ class ProfileFragment : Fragment() {
         val phone = view.findViewById<EditText>(R.id.phoneText)
         val email = view.findViewById<EditText>(R.id.emailText)
         val editBtn = view.findViewById<Button>(R.id.editBtn)
+        val logOutBtn = view.findViewById<Button>(R.id.logOutBtn)
 
         Picasso.get().load("https://api.dicebear.com/7.x/bottts-neutral/png?seed=${firebaseAuth.currentUser!!.uid}").into(avatar)
 
@@ -84,16 +87,23 @@ class ProfileFragment : Fragment() {
                 name.text = nameText.text.toString()
                 nameText.isEnabled = false
                 phone.isEnabled = false
-                editBtn.setBackgroundColor(resources.getColor(R.color.primary))
+                editBtn.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.primary))
                 editBtn.text = "Modificar"
 
             } else {
                 nameText.isEnabled = true
                 phone.isEnabled = true
-                editBtn.setBackgroundColor(resources.getColor(R.color.secondary))
+                editBtn.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.secondary))
                 editBtn.text = "Guardar"
             }
             isEditing = !isEditing
+        }
+
+        logOutBtn.setOnClickListener {
+            val intent = Intent(requireActivity(), Login::class.java)
+            startActivity(intent)
+            firebaseAuth.signOut()
+            activity?.finish()
         }
 
         return view

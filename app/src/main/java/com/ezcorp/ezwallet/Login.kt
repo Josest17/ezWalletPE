@@ -40,6 +40,7 @@ class Login : AppCompatActivity() {
                                 ).show()
                                 val intent = Intent(this, MainActivity::class.java)
                                 startActivity(intent)
+                                finish()
                             }
                     } else {
                         Toast.makeText(this, "Error al iniciar sesión", Toast.LENGTH_SHORT).show()

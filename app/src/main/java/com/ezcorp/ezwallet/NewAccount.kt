@@ -27,7 +27,7 @@ class NewAccount : AppCompatActivity() {
         val birthDate = findViewById<EditText>(R.id.birthDate)
 
         val cal = Calendar.getInstance()
-        val dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { _, year, month, day ->
+        val dpd = DatePickerDialog(this, { _, year, month, day ->
             val selectedDate = "${day}/${month + 1}/$year"
             birthDate.setText(selectedDate)
         }, cal[Calendar.YEAR], cal[Calendar.MONTH], cal[Calendar.DAY_OF_MONTH])
@@ -55,6 +55,7 @@ class NewAccount : AppCompatActivity() {
                         Toast.makeText(this, "Cuenta Creada", Toast.LENGTH_SHORT).show()
                         val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
+                        finish()
                     } else {
                         Toast.makeText(this, "Error al crear cuenta", Toast.LENGTH_SHORT).show()
                         Log.d("TAG", it.exception.toString())
