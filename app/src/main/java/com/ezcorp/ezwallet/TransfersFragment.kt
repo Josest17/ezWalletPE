@@ -249,16 +249,10 @@ class TransfersFragment : Fragment() {
                                     "Transacción realizada",
                                     Toast.LENGTH_SHORT
                                 ).show()
-
                                 input.setText("")
-                                val transaction =
-                                    activity?.supportFragmentManager?.beginTransaction()
-                                transaction?.replace(R.id.fragment_container, MainMenu())
-                                transaction?.addToBackStack(null);
-                                val bottomNavigationView =
-                                    activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)
-                                bottomNavigationView?.selectedItemId = R.id.home
-                                transaction?.commit()
+                                val intent = activity?.intent
+                                activity?.finish()
+                                startActivity(intent)
                             }
                         } else {
                             Toast.makeText(
@@ -277,48 +271,6 @@ class TransfersFragment : Fragment() {
                 }
             }
         }
-
-        /*
-        document.get().addOnSuccessListener { document ->
-            if (document != null) {
-                balance = document.data!!["balance"].toString().toDouble()
-                Log.d("TAG", "balance: $balance")
-
-                if (receiverAcc.isEmpty() || amountValue == 0.00 || balance < amountValue) {
-                    Toast.makeText(
-                        context,
-                        "No es posible realizar la transacción",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    Log.d(
-                        "TAG",
-                        "receiverAcc: $receiverAcc amountValue: $amountValue balance: $balance"
-                    )
-                } else {
-                    val transfersDB = db.collection("transfers")
-                    transfersDB.add(
-                        hashMapOf(
-                            "sender" to firebaseAuth.currentUser!!.uid,
-                            "receiver" to receiverAcc,
-                            "amount" to amountValue,
-                            "date" to System.currentTimeMillis()
-                        )
-                    )
-                    usersDB.document(firebaseAuth.currentUser!!.uid).update("balance", balance - amountValue)
-                    documentReceiver.update("balance", balance + amountValue)
-                    Toast.makeText(context, "Transacción realizada", Toast.LENGTH_SHORT).show()
-
-                    val transaction = activity?.supportFragmentManager?.beginTransaction()
-                    transaction?.replace(R.id.fragment_container, MainMenu())
-                    transaction?.addToBackStack(null);
-                    val bottomNavigationView =
-                        activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)
-                    bottomNavigationView?.selectedItemId = R.id.home
-                    transaction?.commit()
-                }
-            }
-        }
-    }*/
 
         return view
     }
